@@ -10,31 +10,116 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-
 <body>
 <div class="main-page">
     <div id="calendar"></div>
-    <div>
-        <!-- Add Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
-            Add event
-        </button>
+</div>
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col-md-4 offset-md-4">
+            <div class="card text-center">
+                <div class="card-body px-5" style="background-color:#b4e364">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+                        Add event
+                    </button>
+                </div>
+            </div>
 
-        <!-- Add button Modal -->
-        <div class="modal fade" id="addModal" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add event</h5>
+            <div class="card text-center">
+                <div class="card-body px-5" style="background-color:#b4e364">
+                    <form action="display-with-date-range">
+                        <div class="form-group">
+                            <label for="from-date"><b>From:</b></label>
+                            <input type="date" id="from-date" name="from-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="to-date"><b>To:</b> </label>
+                            <input type="date" id="to-date" name="to-date" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">show-with-range</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card text-center">
+                <div class="card-body px-5" style="background-color:#b4e364">
+                    <form action="display-with-game-type">
+                        <div class="from-group">
+                            <input type="checkbox" id="football" name="game" value="Football" checked>
+                            <label for="football">Football</label>
+                        </div>
+                        <div class="from-group">
+                            <input type="checkbox" id="circket" name="game" value="Circket">
+                            <label for="circket">Circket</label>
+                        </div>
+                        <div class="from-group">
+                            <input type="checkbox" id="baseball" name="game" value="Baseball">
+                            <label for="baseball">Baseball</label>
+                        </div>
+                        <div class="from-group">
+                            <input type="checkbox" id="mma" name="game" value="MMA">
+                            <label for="mma">MMA</label>
+                        </div>
+                        <div class="from-group">
+                            <input type="checkbox" id="ice-hockey" name="game" value="Ice-Hockey">
+                            <label for="ice-hockey">Ice-Hockey</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">show-with-game</button>
+                    </form>
+                </div>
+
+                <div class="card text-center">
+                    <div class="card-body px-5" style="background-color:#b4e364">
+                        <div class="form-group">
+                            <form action="home">
+                                <button type="submit" class="btn btn-primary">show-all-event</button>
+                            </form>
+                        </div>
                     </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Add button Modal -->
+<div class="modal fade" id="addModal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="card text-center">
+                <div class="card-body px-5" style="background-color:#a9b7f5">
+                    <h2 class="modal-title" id="exampleModalLabel">Add event</h2>
+                </div>
+            </div>
+            <div class="card text-center">
+                <div class="card-body px-5" style="background-color:#9bfab9">
                     <form method="post" action="add-event">
                         <div class="form-group">
                             <label for="event-date">Event-data:</label>
-                            <input type="date" id="event-date" name="event-date">
+                            <input type="date" id="event-date" name="event-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-time">Event-time:</label>
+                            <input type="time" id="event-time" name="event-time" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="radio" id="football-game" name="event-game" value="Football" checked>
+                            <label for="football-game">Football </label><br>
+                            <input type="radio" id="circket-game" name="event-game" value="Circket">
+                            <label for="circket-game">Circket </label><br>
+                            <input type="radio" id="baseball-game" name="event-game" value="Baseball">
+                            <label for="baseball-game">Baseball </label><br>
+                            <input type="radio" id="mma-game" name="event-game" value="MMA">
+                            <label for="mma-game">MMA </label><br>
+                            <input type="radio" id="icehockey-game" name="event-game" value="Ice-Hockey">
+                            <label for="mma-game">Ice-Hockey </label><br>
                         </div>
                         <div class="form-group">
                             <label for="event-name">Event-name:</label>
-                            <input type="text" id="event-name" name="event-name">
+                            <input type="text" id="event-name" name="event-name" required>
                         </div>
                         <div class="modal-footer form-group text-center">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -44,20 +129,12 @@
                 </div>
             </div>
         </div>
-        <!-- Add button Modal End -->
-
-        <form action="display-with-date-range">
-            <div class="form-group">
-                <label for="from-date">from:</label>
-                <input type="date" id="from-date" name="from-date">
-            </div>
-            <div class="form-group">
-                <label for="to-date">to:</label>
-                <input type="date" id="to-date" name="to-date">
-            </div>
-            <button type="submit" class="btn btn-primary">show</button>
-        </form>
     </div>
+</div>
+<!-- Add button Modal End -->
+
+
+</div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
