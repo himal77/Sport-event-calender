@@ -104,17 +104,17 @@
                             <label for="event-time">Event-time:</label>
                             <input type="time" id="event-time" name="event-time" required>
                         </div>
-
+                        Event-Type:
                         <div class="form-group">
-                            <input type="radio" id="football-game" name="event-game" value="Football" checked>
+                            <input type="radio" id="football-game" name="event-type" value="Football" checked>
                             <label for="football-game">Football </label><br>
-                            <input type="radio" id="circket-game" name="event-game" value="Circket">
+                            <input type="radio" id="circket-game" name="event-type" value="Circket">
                             <label for="circket-game">Circket </label><br>
-                            <input type="radio" id="baseball-game" name="event-game" value="Baseball">
+                            <input type="radio" id="baseball-game" name="event-type" value="Baseball">
                             <label for="baseball-game">Baseball </label><br>
-                            <input type="radio" id="mma-game" name="event-game" value="MMA">
+                            <input type="radio" id="mma-game" name="event-type" value="MMA">
                             <label for="mma-game">MMA </label><br>
-                            <input type="radio" id="icehockey-game" name="event-game" value="Ice-Hockey">
+                            <input type="radio" id="icehockey-game" name="event-type" value="Ice-Hockey">
                             <label for="mma-game">Ice-Hockey </label><br>
                         </div>
                         <div class="form-group">
@@ -151,28 +151,12 @@
 <script src=" https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js "></script>
 <script src="<c:url value="/resources/js/evo-calendar.min.js"/>"></script>
 <script>
+    const event = ([[${event}]]);
+    console.log(event[0][0]);
+
     $(document).ready(function () {
         $('#calendar').evoCalendar({
-            calendarEvents: [{
-                id: 'abc', // Event's ID (required)
-                name: '${event}', // Event name (required)
-                date: "January/1/2020", // Event date (required)
-                type: "holiday", // Event type (required)
-                everyYear: true // Same event every year (optional)
-            }, {
-                name: "Vacation Leave",
-                badge: "02/13 - 02/15", // Event badge (optional)
-                date: ["February/13/2020", "February/15/2020"], // Date range
-                description: "Vacation leave for 3 days.", // Event description (optional)
-                type: "event",
-                color: "#63d867" // Event custom color (optional)
-            }, {
-                id: 'abc', // Event's ID (required)
-                name: "abc", // Event name (required)
-                date: "January/1/2020", // Event date (required)
-                type: "holiday", // Event type (required)
-                everyYear: true // Same event every year (optional)
-            }]
+            calendarEvents: event[0][0]
         })
     })
 </script>

@@ -16,7 +16,7 @@
         http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
 
-<!--    <tx:annotation-driven/>-->
+    <tx:annotation-driven/>
     <context:annotation-config/>
     <context:component-scan base-package="com.puri"/>
 
@@ -26,41 +26,41 @@
     </bean>
 
     <mvc:resources mapping="/resources/**" location="/resources/"/>
-    <mvc:annotation-driven />
+    <mvc:annotation-driven/>
 
+    <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" name="ds">
+        <property name="url" value="jdbc:mysql://localhost:3306/sportradar?serverTimezone=UTC"/>
+        <property name="username" value="puri"/>
+        <property name="password" value="10bitNP"/>
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+    </bean>
 
-    <!--
-        <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" name="ds">
-            <property name="url" value="jdbc:mysql://localhost:3306/rbi?serverTimezone=UTC"/>
-            <property name="username" value="root"/>
-            <property name="password" value="Mountech@123.com"/>
-            <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-        </bean>
+    <bean class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" name="factory">
+        <property name="dataSource" ref="ds"/>
 
-        <bean class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" name="factory">
-            <property name="dataSource" ref="ds"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL57Dialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+            </props>
+        </property>
 
-            <property name="hibernateProperties">
-                <props>
-                    <prop key="hibernate.dialect">org.hibernate.dialect.MySQL57Dialect</prop>
-                    <prop key="hibernate.show_sql">true</prop>
-                    <prop key="hibernate.hbm2ddl.auto">update</prop>
-                </props>
-            </property>
+        <property name="annotatedClasses">
+            <list>
+                <value>com.puri.model.EventModel</value>
+            </list>
+        </property>
+    </bean>
 
-            <property name="annotatedClasses">
-                <list>
-                </list>
-            </property>
-        </bean>
+    <bean class="org.springframework.orm.hibernate5.HibernateTemplate" name="hibernateTemplate">
+        <property name="sessionFactory" ref="factory"/>
+    </bean>
 
-        <bean class="org.springframework.orm.hibernate5.HibernateTemplate" name="hibernateTemplate">
-            <property name="sessionFactory" ref="factory"/>
-        </bean>
+    <bean class="org.springframework.orm.hibernate5.HibernateTransactionManager" name="transactionManager">
+        <property name="sessionFactory" ref="factory"/>
+    </bean>
 
-        <bean class="org.springframework.orm.hibernate5.HibernateTransactionManager" name="transactionManager">
-            <property name="sessionFactory" ref="factory"/>
-        </bean>
-    -->
+    <bean class="com.puri.Helper" name="helper"/>
 </beans>
 
