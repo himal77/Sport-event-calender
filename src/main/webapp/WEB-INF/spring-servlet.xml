@@ -29,9 +29,9 @@
     <mvc:annotation-driven/>
 
     <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" name="ds">
-        <property name="url" value="jdbc:mysql://localhost:3306/sportradar?serverTimezone=UTC"/>
+        <property name="url" value="jdbc:mysql://a11738090-puri-himal.ceee5wql0jwo.us-east-1.rds.amazonaws.com:3306/sportradar?serverTimezone=UTC"/>
         <property name="username" value="puri"/>
-        <property name="password" value="10bitNP"/>
+        <property name="password" value="mysqlq123.com"/>
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
     </bean>
 
